@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hexagon Example</title>
+  <script src="https://unpkg.com/deck.gl@^8.0/dist.min.js"></script>
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js"></script>
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+<body>
+  <div id="map" style="height: 100vh;"></div>
+
+  <script>
+    const {DeckGL, HexagonLayer} = deck;
+
+    const deckgl = new DeckGL({
+      mapboxApiAccessToken: 'pk.eyJ1Ijoibm8zM21pcyIsImEiOiJjbHRqMGpzN2MwaDd5MmtuejkwcGJyMjc4In0.X-tRk93a9l5ESNvp4YBdTw',
+      mapStyle: 'mapbox://styles/mapbox/light-v9',
+      initialViewState: {
+        longitude: 8.2275,
+        latitude: 46.8182,
+        zoom: 7,
+        pitch: 40.5
+      },
+      controller: true,
+      layers: [
+        new HexagonLayer({
+          id: 'hexagon-layer',
+          data: 'https://eeon-statpop.s3.eu-central-2.amazonaws.com/statpop_2022_s.json', // Your converted WGS84 data
+          getPosition: d => [d.LON, d.LAT],
+          getElevationWeight: d => d.B22BTOT, // Column name of the value you want to visualize
+          elevationScale: 100,
+          extruded: true,
+          radius: 1000, // Adjust based on your preference
+          opacity: 0.6,
+          coverage: 1,
+        })
+      ]
+    });
+  </script>
+</body>
+</html>
