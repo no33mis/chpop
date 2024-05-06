@@ -9,10 +9,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@deck.gl/core": "v8.9.35",
     "@deck.gl/aggregation-layers": "v8.9.35",
-    "@deck.gl/react": "v8.9.35",
+    "@deck.gl/core": "v8.9.35",
     "@deck.gl/mapbox": "v8.9.35",
+    "@deck.gl/react": "v8.9.35",
+    "dotenv": "^16.4.5",
     "mapbox-gl": "^3.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
